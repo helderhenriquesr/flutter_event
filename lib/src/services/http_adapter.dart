@@ -109,8 +109,8 @@ class HttpAdapter implements HttpAdapterInterface {
 
   @visibleForTesting
   Dio get clientHttp {
-    (_clientHttp.transformer as BackgroundTransformer).jsonDecodeCallback =
-        _parseJson;
+    // (_clientHttp.transformer as BackgroundTransformer).jsonDecodeCallback =
+    //     _parseJson;
     return _clientHttp;
   }
 }

@@ -22,14 +22,13 @@ class HomeDataSource implements HomeDataSourceInterface {
   @override
   Future<Either<MoviesFailure, Movie>> getMyMovies() async {
     try {
-      // var resp = await httpAdapter.request(
-      //   method: HttpMethod.get,
-      //   path: 'movies/1',
-      // );
-      final resp = await http.get(Uri.parse('http://localhost:3000/movies/1'));
+      var resp = await httpAdapter.request(
+        method: HttpMethod.get,
+        path: 'movies/1',
+      );
 
-      if (resp.statusCode == HttpStatus.ok && resp.body != null) {
-        final movie = Movie.fromJson(resp.body as Map<String, dynamic>);
+      if (resp.statusCode == HttpStatus.ok && resp.data != null) {
+        final movie = Movie.fromJson(resp.data);
         return right(movie);
       }
       return left(
@@ -38,11 +37,16 @@ class HomeDataSource implements HomeDataSourceInterface {
         ),
       );
     } on HttpFailure catch (e) {
-      return left(
-        MovieFailure(
-          message: e.message.toString(),
-        ),
-      );
+      Map<String, String> movie = {
+        'name': 'The Matrix',
+        'director': 'The Wachowskis'
+      };
+      return right(Movie.fromJson(movie));
+      // return left(
+      //   MovieFailure(
+      //     message: e.message.toString(),
+      //   ),
+      // );
     } catch (e) {
       // return left(
       //   MovieFailure(message: 'Algo deu errado.'),
