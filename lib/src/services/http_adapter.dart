@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -20,14 +18,6 @@ abstract class HttpAdapterInterface {
     Map<String, dynamic>? params,
     Map<String, dynamic>? headers,
   });
-}
-
-Future _parseJson(String text) {
-  return compute(_parseAndDecode, text);
-}
-
-dynamic _parseAndDecode(String response) {
-  return jsonDecode(response);
 }
 
 class HttpAdapter implements HttpAdapterInterface {
@@ -109,8 +99,6 @@ class HttpAdapter implements HttpAdapterInterface {
 
   @visibleForTesting
   Dio get clientHttp {
-    // (_clientHttp.transformer as BackgroundTransformer).jsonDecodeCallback =
-    //     _parseJson;
     return _clientHttp;
   }
 }

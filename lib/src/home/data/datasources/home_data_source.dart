@@ -6,7 +6,6 @@ import 'package:suricato_app/src/home/entities/movie.dart';
 import '../../../services/http_adapter.dart';
 import '../../failures/failures.dart';
 import '../../failures/http_failure.dart';
-import 'package:http/http.dart' as http;
 
 abstract class HomeDataSourceInterface {
   Future<Either<MoviesFailure, Movie>> getMyMovies();

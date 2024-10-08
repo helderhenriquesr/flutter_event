@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:suricato_app/src/home/domain/usecases/get_my_movies.dart';
 
-import '../../../themes/app_text_styles.dart';
 import '../bloc/home_bloc.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,16 +41,14 @@ class _HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: ElevatedButton(
-                      child: const Text('Buscar Filme'),
-                      onPressed: () {
-                        context.read<MyMoviesBloc>().add(GetMyMoviesEvent());
-                      },
-                    ),
+                  ElevatedButton(
+                    child: const Text('Buscar Filme'),
+                    onPressed: () {
+                      context.read<MyMoviesBloc>().add(GetMyMoviesEvent());
+                    },
                   ),
                 ],
               ),
